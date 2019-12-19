@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Lava.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/dead.wav" type="AudioStream" id=2]
+
+[node name="Lava" type="Area2D"]
+position = Vector2( 0, 490 )
+scale = Vector2( 1, 0.22449 )
+script = ExtResource( 1 )
+world_scene = "res://Scenes/GameOver.tscn"
+
+[node name="Backgound2" type="Polygon2D" parent="."]
+position = Vector2( -10.099, 356.363 )
+scale = Vector2( 1.02951, 2.18182 )
+color = Color( 0.941176, 0.466667, 0.0470588, 1 )
+polygon = PoolVector2Array( 0, 0, 1020, 0, 1020, 490, 0, 490 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 623.636 )
+polygon = PoolVector2Array( 0, 0, 0, 490, 1020, 490, 1020, 0 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Lava_body_entered"]
+[connection signal="finished" from="Sound" to="." method="_on_AudioStreamPlayer_finished"]
