@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Token.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "rotar"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Imagen:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Imagen:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 3, 3 ), Vector2( 2, 2 ) ]
+}
+
+[node name="Token" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="Imagen" type="Polygon2D" parent="."]
+rotation = 2.49876
+scale = Vector2( 2.79538, 2.79538 )
+color = Color( 0.941176, 0.196078, 0.0509804, 1 )
+offset = Vector2( -0.174812, -1.41122 )
+polygon = PoolVector2Array( -5.11301, 5.97439, 0.232628, 2.16764, 5.90224, 5.7314, 0.961578, 1.03372, 0.0706367, -5.68883, -0.496323, 1.11471 )
+
+[node name="Colision" type="CollisionShape2D" parent="."]
+position = Vector2( -0.0232391, 0.131777 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "rotar"
+anims/rotar = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Token_body_entered"]
