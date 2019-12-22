@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Ball.gd" type="Script" id=1]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 2.0
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 11.7724
+
+[node name="Ball" type="RigidBody2D"]
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+script = ExtResource( 1 )
+
+[node name="Image" type="Polygon2D" parent="."]
+position = Vector2( 0.0112806, 0.171804 )
+scale = Vector2( 1.11769, 1.03549 )
+polygon = PoolVector2Array( -8.93568, -7.65976, -5.03234, -11.2999, 0.106491, -12.1808, 5.09244, -11.1729, 9.34524, -8.0529, 10.8612, -3.29416, 11.3109, 0.202999, 10.508, 5.34701, 8.55896, 8.65546, 4.26833, 11.3196, -0.483215, 11.8006, -4.79688, 11.1925, -8.73911, 8.26233, -10.8011, 4.8387, -11.0474, -0.302042, -10.6834, -4.18369 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Directioner" type="Polygon2D" parent="."]
+color = Color( 0.980392, 0.0862745, 0.0862745, 1 )
+polygon = PoolVector2Array( 30, 10, 30, -10, 40, 0, 30, 10 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
